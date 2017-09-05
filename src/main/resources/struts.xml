@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 包含struts-default.xml文件 -->
+    <include file="struts-default.xml"></include>
+    <!-- 设置字符集为UTF-8 -->
+    <constant name="struts.i18n.encoding" value="UTF-8">
+    </constant>
+    <!-- 设置struts2允许的后缀名 -->
+    <!-- <constant name="struts.action.extension" value="do,action"></constant> -->
+    <!-- 是否允许浏览器缓存静态内容 -->
+    <constant name="struts.serve.static.browserCache" value="false"></constant>
+    <!-- 配置文件变化时是否重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="true"></constant>
+    <!-- 是否开启开发者模式 -->
+    <constant name="struts.devMode" value="true"></constant>
+    <!-- 是否允许动态方法调用 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+    <!-- 由spring担任工程bean -->
+    <constant name="struts.ObjectFactory" value="spring"></constant>
+    <!-- 映射action -->
+	<package name="web-default" extends="struts-default">
+		<!-- 定义一个interceptors,使用的时候可以直接使用interceptor，也可以使用interceptor-stack -->
+		<interceptors>
+			<!-- 定义一个自己的interceptor -->
+			<interceptor name="myInterceptor"
+				class="com.qingshixun.project.interceptor.MyInterception"></interceptor>
+
+			<!-- 配置一个自定义的拦截器链，包含了自己定义的拦截器和默认的拦截器 -->
+			<interceptor-stack name="myInterceptorStack">
+				<interceptor-ref name="myInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- <global-results> <result name="login">/WEB-INF/views/user/login.jsp</result> 
+			<result name="success" type="redirect">findUser</result> </global-results> -->
+		<!-- 当使用@Action注解时，这里就不需要配置了 -->
+		<!-- <action name="*User" class="userAction"
+			method="{1}User">
+			<interceptor-ref name="myInterceptorStack" />
+			<result name="login">/WEB-INF/views/user/login.jsp</result>
+			<result name="success" type="redirect">findUser</result>
+			<result name="update">/WEB-INF/views/user/userForm.jsp</result>
+			<result name="userlist">/WEB-INF/views/user/userList.jsp</result>
+			<allowed-methods>registerUser,addUser,findUser,logoutUser,deleteUser,updateUser,updateResultUser</allowed-methods>
+		</action> -->
+		<!-- <action name="addUser" class="com.qingshixun.project.action.UserAction"> 
+			<result name="success">/index.jsp</result> </action> -->
+		<!-- 当使用@Action注解时，这里就不需要配置了 -->
+		<!-- <action name="loginResultUser" class="userAction" method="loginResultUser">
+			<result name="login">/WEB-INF/views/user/login.jsp</result>
+			<result name="success" type="redirect">findUser</result>
+		</action> -->
+		
+		<!-- 当使用@Action注解时，这里就不需要配置了 -->
+		<!-- <action name="queryByPage" class="userAction" method="queryByPage">
+			
+			<result name="page">/WEB-INF/views/user/pageUser.jsp</result>
+			<result name="success" type="redirect">findUser</result>
+		</action> -->
+	</package>
+</struts>

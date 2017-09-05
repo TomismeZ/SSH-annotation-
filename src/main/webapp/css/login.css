@@ -1,0 +1,96 @@
+.content {
+	border: 1px solid grey;
+	width: 800px;
+	height: 400px;
+}
+
+.left {
+	margin: 10px;
+	float: left;
+	width: 300px;
+}
+
+.headed {
+	font-weight: bold;
+	font-size: 24px;
+	/*float: center;*/
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	/*cover*/
+	background-size: contain;
+	margin-left: 100px;
+	/*text-align: center;*/
+	background-position: 0 0;
+	padding-left: 10%;
+}
+
+.right {
+	height: 380px;
+	margin: 10px;
+	float: left;
+	width: 460px;
+	height: 380px;
+}
+
+p {
+	margin-top: 30px;
+}
+
+form {
+	margin-left: 50px;
+	height: 380px;
+}
+
+.message {
+	width: 100%;
+	height: 200px;
+	background-color: blue;
+}
+
+.input-group {
+	width: 100%;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 3%;
+}
+
+.input-group .input-content {
+	width: 70%;
+	/*对于外部其他元素是行内元素，对于内部是块级元素*/
+	display: inline-block;
+	text-align: left;
+}
+
+.input-group .input {
+	width: 70%;
+	height: 25px;
+	border: 1px solid black;
+	font-size: 15px;
+	padding-left: 10px;
+}
+
+.button-group {
+	width: 100%;
+	border-top: 1px solid black;
+	margin-top: 10px;
+	text-align: center;
+	padding-top: 30px;
+	letter-spacing: 30px;
+}
+
+.button-group button {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+}
+
+.input:invalid+span::after {
+	content: "×";
+	padding-left: 10px;
+}
+
+.input:valid+span::after {
+	content: "✓";
+	padding-left: 10px;
+}

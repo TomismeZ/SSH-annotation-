@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:c="http://www.springframework.org/schema/c" 
+    xmlns:cache="http://www.springframework.org/schema/cache" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+    xmlns:jee="http://www.springframework.org/schema/jee" 
+    xmlns:lang="http://www.springframework.org/schema/lang" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:task="http://www.springframework.org/schema/task" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	<!-- @Repository("userDao")当采用这个注解时，就不需要配置数据访问层bean属性了，userDao必须与业务逻辑层定义的属性一致 -->
+	<!-- <bean id="userDao" class="com.qingshixun.project.dao.impl.UserDaoImpl"></bean>-->
+	<!-- @Service("userService")当采用这个注解时，就不需要配置业务逻辑层bean属性了，前提是必须与@Autowired注解一起使用，否则就无法访问数据，会空指针异常 -->
+	<!--<bean id="userService" class="com.qingshixun.project.service.impl.UserServiceImpl">
+		当采用@Autowired注解时，就不需要Setter与构造注入了，前提是必须开启注解的包
+		<property name="userDao">
+			<ref bean="userDao"/>
+		</property>
+	</bean> -->
+	
+	<!-- @Scope("prototype"),@Controller当使用这两个注解并且在该类中定义userAction，设置get与set方法，就不需要配置Action（表现层）的bean了  -->
+	<!-- <bean id="userAction" class="com.qingshixun.project.action.UserAction"> -->
+		<!-- 当采用@Autowired注解时，就不需要Setter与构造注入了，前提是必须开启注解的包 -->
+		<!-- <property name="userService" ref="userService"></property> 
+	</bean>-->
+	
+	<!-- 加载配置文件 -->	
+	<context:property-placeholder location="classpath:config.properties"/>
+    <!-- 开启注解编程 -->
+    <!-- <mvc:annotation-driven></mvc:annotation-driven> -->
+  <context:annotation-config></context:annotation-config>
+
+<!--     指定需要开启注解编程的包 -->
+    <context:component-scan base-package="com.qingshixun.project">
+    </context:component-scan>
+</beans>

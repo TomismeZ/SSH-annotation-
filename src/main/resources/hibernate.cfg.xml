@@ -1,0 +1,46 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+    <!-- 配置数据库连接信息 -->
+    <!-- 数据库驱动 -->
+    <property name="connection.driver_class">
+        com.mysql.jdbc.Driver
+    </property>
+    <!-- url 相当于：jdbc:mysql://localhost:3306/hibernate?useUnicode=true&characterEncoding=UTF-8-->
+    <property name="connection.url">
+        <!-- jdbc:mysql:///hibernate?useUnicode=true&characterEncoding=UTF-8这样写有问题 -->
+        <![CDATA[jdbc:mysql://localhost:3306/hibernate?useUnicode=true&characterEncoding=utf8]]>
+    </property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">123456</property>
+    <!-- hibernate可选项信息 -->
+    <!-- 数据库方言 -->
+    <property name="dialect">
+        org.hibernate.dialect.MySQL5Dialect
+    </property>
+    <!-- 是否打印sql语句 -->
+    <property name="show_sql">true</property>
+    <!-- 格式化sql语句 -->
+    <property name="format_sql">true</property>
+    <!-- 数据库更新方式：
+        create：每次执行 都先把原有数据表删除，然后创建该表
+        create-drop：使用 create-drop时,在显式关闭SessionFactory时，
+        将drop掉数据库schema(表). 
+        validate：检测
+        update：如果表不存在 则创建，有就不用创建
+     -->
+     
+     	<property name="hibernate.cache.use_second_level_cache">false</property>
+		<property name="hibernate.cache.region.factory_class ">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="max_fetch_depth">2</property>
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<property name="connection.autocommit">true</property>
+		<property name="cache.provider_configuration_file_resource_path">ehcache-hibernate.xml</property>
+    <property name="hbm2ddl.auto">update</property>
+    <!-- 映射文件信息 -->
+  <!--    <mapping resource="com/lyc/pojo/User.hbm.xml" /> -->
+  <mapping class="com.qingshixun.project.model.UserModel"/>
+</session-factory>
+</hibernate-configuration>
